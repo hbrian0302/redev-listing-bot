@@ -26,7 +26,9 @@ data.go.kr announcements ──▶ margin & location score ──▶ decision
 
 ### 2. Decisions from absolute margin, not percentages (`무순위/margin.py`)
 
-The first version graded listings by percentage below market. Measured against 326 real announcements, that was wrong: a 15%-cheaper ₩500M complex is only a ₩75M margin but was promoted to "must apply", while a 5%-cheaper ₩3B complex (₩150M margin) was demoted. The v2 design (`무순위/docs/superpowers/specs/`) records the measurement, the rejected hypotheses, and the fix: an absolute-margin ladder, a ratio guard that takes the lower grade on conflict, and a confidence guard for thin comparison samples.
+The first version graded listings by percentage below market. Tracing why the posts got no reaction exposed the flaw: a 15%-cheaper ₩500M complex is only a ₩75M margin but was promoted to "must apply", while a 5%-cheaper ₩3B complex (₩150M margin) was demoted. One of the two posts that had actually gone out had a margin of only ₩38M and was labelled "worth considering".
+
+The v2 design (`무순위/docs/superpowers/specs/`) records that diagnosis, the numbers pulled from 326 live announcements (most application windows last a single day, median lead time 5 days), the hypotheses that were tried and rejected, and the fix: an absolute-margin ladder, a ratio guard that takes the lower grade on conflict, and a confidence guard for thin comparison samples. The 326 announcements were used for timing, not for margins; the spec lists the margin cut-off's pass rate as unmeasured.
 
 ### 3. Human-in-the-loop queue
 
@@ -57,6 +59,8 @@ Secrets are never stored in this repo. They are read from the macOS keychain (se
 
 ## Status and honesty notes
 
-- The unranked-lottery bot ran live but got almost no engagement. The v2 spec diagnoses why (a percentage-based filter was publishing low-value listings and captions had no deadline) and the changes above are the response. Whether v2 raises engagement has not been measured yet.
+- The unranked-lottery bot ran live but got almost no engagement. The v2 spec diagnoses why (a percentage-based filter was publishing low-value listings and captions had no deadline) and the changes above are the response. That diagnosis rests on only 2 published posts, so it cannot yet be separated from plain small-sample noise, and whether v2 raises engagement has not been measured.
+- The spec's status line still reads "design confirmed, not yet implemented"; the code and the 69 tests in `무순위/` implement the ladder, the caption guard and the deadline queue.
+- Browser-automation scripts for Instagram posting and for automated commenting/following were left out of this repository on purpose.
 - Market prices are estimated from nearby actual-transaction records, so the margin is an estimate, not a guarantee. The pipeline marks low-sample cases and keeps them out of the feed.
 - Built for macOS and Python 3.9+. Korean comments and prompts throughout.
