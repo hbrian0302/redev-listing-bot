@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.example.musunwi-review</string>
+  <key>ProgramArguments</key><array>
+    <string>/bin/zsh</string><string>-lc</string>
+    <string>cd ~/agents/telegram-claude &amp;&amp; /Users/USER/.local/bin/uv run --with keyring python "/path/to/repo/무순위/review_bot.py"</string>
+  </array>
+  <key>KeepAlive</key><true/>
+  <key>StandardOutPath</key><string>/path/to/repo/무순위/review.log</string>
+  <key>StandardErrorPath</key><string>/path/to/repo/무순위/review.error.log</string>
+</dict></plist>
