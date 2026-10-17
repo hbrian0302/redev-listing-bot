@@ -1,0 +1,5 @@
+{
+  "blogs": [
+    {"blog_id": "EXAMPLE_AGENT_BLOG", "name": "○○부동산", "note": "대표가 실제 제휴 중개사 blog_id로 교체/추가"}
+  ]
+}
