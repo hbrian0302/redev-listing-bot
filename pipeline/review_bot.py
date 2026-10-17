@@ -151,12 +151,12 @@ def handle_callback(cb, state, db):
     elif action == "cm":
         state["awaiting_comment"] = code; save_state(state)
         api("sendMessage", chat_id=cid,
-            text=f"✍️ '{code}'에 넣을 재미나이 한마디를 답장으로 보내주세요.\n"
-                 "(카드 3페이지에 '— 재미나이' 서명으로 박혀서 나갑니다. 아는 구역 실경험 한 줄이면 딱)")
+            text=f"✍️ '{code}'에 넣을 대표 한마디를 답장으로 보내주세요.\n"
+                 "(카드 3페이지에 '— 대표' 서명으로 박혀서 나갑니다. 아는 구역 실경험 한 줄이면 딱)")
 
 
 def add_comment_rerender(code: str, comment: str):
-    """재미나이 한마디를 카드에 넣어 재렌더. 성공 시 갱신 draft, 실패 시 None."""
+    """대표 한마디를 카드에 넣어 재렌더. 성공 시 갱신 draft, 실패 시 None."""
     src = PENDING / f"{code}.json"
     if not src.exists():
         return None

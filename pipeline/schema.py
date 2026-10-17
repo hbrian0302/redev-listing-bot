@@ -1,6 +1,6 @@
 """매물 카드 데이터 스키마 + 표현 로직 (순수 함수)."""
 
-# 캡션 CTA에 넣을 대표 텔레그램 핸들(리드 DM 창구). 브랜드명은 "재미나이".
+# 캡션 CTA에 넣을 대표 텔레그램 핸들(리드 DM 창구).
 TELEGRAM_HANDLE = "@your_handle"
 
 REQUIRED_FIELDS = ("zone", "stage", "location", "price", "premium", "fighter_note", "source_name")
