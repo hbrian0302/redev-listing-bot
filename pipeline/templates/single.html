@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1080px; height:1080px; }
+  body {
+    background:#f1ebdd;
+    color:#201c16;
+    font-family:'Apple SD Gothic Neo',sans-serif;
+    position:relative;
+  }
+  /* 종이 결(그레인) */
+  body::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.06; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .frame{ position:absolute; inset:44px; border:2px solid #201c16; padding:52px 56px 44px; display:flex; flex-direction:column; }
+  /* 모서리 브래킷 */
+  .frame::before,.frame::after{ content:""; position:absolute; width:26px; height:26px; border:2px solid #201c16; }
+  .frame::before{ top:-2px; left:-2px; border-right:none; border-bottom:none; }
+  .frame::after{ bottom:-2px; right:-2px; border-left:none; border-top:none; }
+
+  .masthead{ display:flex; justify-content:space-between; align-items:baseline; }
+  .brand{ font-family:'Nanum Myeongjo',serif; font-size:40px; font-weight:700; letter-spacing:1px; }
+  .issue{ font-family:'Courier New',monospace; font-size:19px; letter-spacing:2px; color:#6a6156; }
+  .rule{ border-top:2px solid #201c16; margin:12px 0 6px; }
+  .kicker{ font-family:'Courier New',monospace; font-size:18px; letter-spacing:7px; text-transform:uppercase; color:#4a4238; }
+
+  .tag{ align-self:flex-start; margin-top:30px; font-family:'Courier New',monospace; font-size:21px; font-weight:700;
+        letter-spacing:2px; color:#b03a2e; border:2px solid #b03a2e; padding:6px 16px; border-radius:2px; }
+
+  .zone{ font-family:'Nanum Myeongjo',serif; font-size:96px; font-weight:700; line-height:1.05; margin:22px 0 10px; letter-spacing:-1px; }
+  .stage{ font-family:'Courier New',monospace; font-size:24px; letter-spacing:2px; color:#4a4238; }
+
+  .ledger{ margin-top:auto; }
+  .lrow{ display:flex; align-items:baseline; font-family:'Courier New',monospace; padding:16px 0; }
+  .lrow + .lrow{ border-top:1px dashed #b3a893; }
+  .lkey{ font-size:30px; color:#4a4238; letter-spacing:1px; }
+  .leader{ flex:1; border-bottom:2px dotted #b3a893; margin:0 14px 8px; }
+  .lval{ font-size:46px; font-weight:700; }
+  .lval.hot{ color:#b03a2e; }
+
+  .note-bar{ background:#201c16; color:#f1ebdd; font-family:'Courier New',monospace; font-size:19px; letter-spacing:4px;
+             text-transform:uppercase; padding:7px 14px; margin-top:34px; width:fit-content; }
+  .note{ font-family:'Nanum Myeongjo',serif; font-size:34px; line-height:1.5; margin-top:16px; }
+
+  .foot{ border-top:2px solid #201c16; margin-top:26px; padding-top:12px; display:flex; justify-content:space-between;
+         font-family:'Courier New',monospace; font-size:18px; letter-spacing:1px; color:#6a6156; }
+</style></head>
+<body>
+  <div class="frame">
+    <div class="masthead">
+      <div class="brand">재미나이</div>
+      <div class="issue">SEOUL · 2026</div>
+    </div>
+    <div class="rule"></div>
+    <div class="kicker">redev listing note</div>
+
+    <div class="tag">2030 입성픽</div>
+
+    <div class="zone">{{ zone }}</div>
+    <div class="stage">{{ stage }}{% if location %} · {{ location }}{% endif %}{% if transit %} · {{ transit }}{% endif %}</div>
+
+    <div class="ledger">
+      <div class="lrow"><span class="lkey">매매가</span><span class="leader"></span><span class="lval hot">{{ price }}</span></div>
+      <div class="lrow"><span class="lkey">프리미엄</span><span class="leader"></span><span class="lval">{{ premium or '감정 전' }}</span></div>
+    </div>
+
+    <div class="note-bar">현장 한줄평</div>
+    <div class="note">{{ fighter_note }}</div>
+
+    <div class="foot"><span>출처 · {{ source_name }}</span><span>정보제공용 · 거래는 현장 중개사</span></div>
+  </div>
+</body></html>

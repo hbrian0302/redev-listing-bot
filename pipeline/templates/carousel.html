@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Apple SD Gothic Neo',sans-serif; }
+  .slide{ width:1080px; height:1080px; background:#f1ebdd; color:#201c16; position:relative; }
+  .slide::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.06; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .frame{ position:absolute; inset:44px; border:2px solid #201c16; padding:52px 56px 44px; display:flex; flex-direction:column; }
+  .frame::before,.frame::after{ content:""; position:absolute; width:26px; height:26px; border:2px solid #201c16; }
+  .frame::before{ top:-2px; left:-2px; border-right:none; border-bottom:none; }
+  .frame::after{ bottom:-2px; right:-2px; border-left:none; border-top:none; }
+  .brand{ font-family:'Nanum Myeongjo',serif; font-size:34px; font-weight:700; letter-spacing:1px; }
+  .mast{ display:flex; justify-content:space-between; align-items:baseline; }
+  .issue{ font-family:'Courier New',monospace; font-size:17px; letter-spacing:2px; color:#6a6156; }
+  .rule{ border-top:2px solid #201c16; margin:12px 0 0; }
+  .kicker{ font-family:'Courier New',monospace; font-size:16px; letter-spacing:6px; text-transform:uppercase; color:#4a4238; margin-top:6px; }
+  .tag{ align-self:flex-start; margin-top:26px; font-family:'Courier New',monospace; font-size:20px; font-weight:700;
+        letter-spacing:2px; color:#b03a2e; border:2px solid #b03a2e; padding:6px 15px; }
+  .bar{ background:#201c16; color:#f1ebdd; font-family:'Courier New',monospace; font-size:19px; letter-spacing:4px;
+        text-transform:uppercase; padding:8px 15px; width:fit-content; }
+
+  /* cover */
+  .big{ font-family:'Nanum Myeongjo',serif; font-size:110px; font-weight:700; line-height:1.03; margin-top:30px; letter-spacing:-1px; }
+  .sub{ font-family:'Courier New',monospace; font-size:24px; letter-spacing:2px; color:#4a4238; margin-top:14px; }
+  .swipe{ margin-top:auto; font-family:'Courier New',monospace; font-size:26px; letter-spacing:3px; color:#b03a2e; }
+  .pageno{ position:absolute; bottom:60px; right:70px; font-family:'Courier New',monospace; font-size:20px; color:#6a6156; }
+
+  /* ledger */
+  .ledger{ margin-top:40px; }
+  .lrow{ display:flex; align-items:baseline; font-family:'Courier New',monospace; padding:19px 0; }
+  .lrow + .lrow{ border-top:1px dashed #b3a893; }
+  .lkey{ font-size:34px; color:#4a4238; letter-spacing:1px; }
+  .leader{ flex:1; border-bottom:2px dotted #b3a893; margin:0 16px 9px; }
+  .lval{ font-size:52px; font-weight:700; }
+  .lval.hot{ color:#b03a2e; }
+
+  .note{ font-family:'Nanum Myeongjo',serif; font-size:44px; line-height:1.45; margin-top:26px; }
+  .detail{ font-family:'Apple SD Gothic Neo',sans-serif; font-size:22px; line-height:1.65; color:#4a4238; margin-top:20px; }
+  .mapbox{ margin-top:18px; height:270px; border:2px solid #201c16; overflow:hidden; background:#e6dfce; }
+  .founder{ margin-top:18px; background:#efe4c8; border-left:7px solid #b03a2e; padding:14px 20px;
+            font-family:'Nanum Myeongjo',serif; font-size:30px; line-height:1.45; }
+  .founder .sig{ display:block; margin-top:6px; font-family:'Courier New',monospace; font-size:20px;
+                 letter-spacing:1px; color:#b03a2e; }
+  .mapimg{ width:100%; height:100%; object-fit:cover; display:block; }
+  .mapph{ width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; font-family:'Courier New',monospace; color:#8a7f6c; }
+  .mapph .pin{ font-size:44px; }
+  .mapph .zl{ font-family:'Nanum Myeongjo',serif; font-size:30px; color:#4a4238; }
+  .mapph small{ font-size:18px; letter-spacing:2px; }
+  .warn{ margin-top:auto; font-family:'Courier New',monospace; font-size:22px; letter-spacing:1px; color:#6a6156; }
+
+  .cta{ font-family:'Nanum Myeongjo',serif; font-size:96px; font-weight:700; line-height:1.08; margin-top:40px; }
+  .ctasub{ font-family:'Courier New',monospace; font-size:28px; letter-spacing:1px; margin-top:16px; line-height:1.55; }
+  .broker{ font-family:'Nanum Myeongjo',serif; font-size:52px; font-weight:700; line-height:1.25; margin-top:20px; }
+  .bphone{ font-family:'Courier New',monospace; font-size:38px; font-weight:700; color:#b03a2e; letter-spacing:1px; }
+  .src{ margin-top:auto; display:flex; justify-content:space-between; align-items:baseline; gap:20px;
+        font-family:'Courier New',monospace; font-size:20px; letter-spacing:1px; color:#6a6156;
+        border-top:2px solid #201c16; padding-top:22px; }
+  .srctxt{ line-height:1.5; }
+  .srcpage{ white-space:nowrap; }
+</style></head>
+<body>
+  <!-- 1. 표지 -->
+  <div class="slide"><div class="frame">
+    <div class="mast"><div class="brand">재미나이</div><div class="issue">SEOUL · 2026</div></div>
+    <div class="rule"></div><div class="kicker">redev listing note</div>
+    <div class="tag">2030 입성픽</div>
+    <div class="big">{{ zone }}</div>
+    <div class="sub">{{ stage }}{% if location %} · {{ location }}{% endif %}</div>
+    <div class="swipe">밀어서 매물 정보 →</div>
+    <div class="pageno">01 / 04</div>
+  </div></div>
+
+  <!-- 2. 매물 정보 (ledger) -->
+  <div class="slide"><div class="frame">
+    <div class="bar">매물 정보 · listing</div>
+    <div class="ledger">
+      <div class="lrow"><span class="lkey">매매가</span><span class="leader"></span><span class="lval hot">{{ price }}</span></div>
+      <div class="lrow"><span class="lkey">프리미엄</span><span class="leader"></span><span class="lval">{{ premium or '감정 전' }}</span></div>
+      {% if rights_value %}<div class="lrow"><span class="lkey">권리가액</span><span class="leader"></span><span class="lval">{{ rights_value }}</span></div>{% endif %}
+      {% if expected_movein %}<div class="lrow"><span class="lkey">예상입주</span><span class="leader"></span><span class="lval">{{ expected_movein }}</span></div>{% endif %}
+      {% if area %}<div class="lrow"><span class="lkey">전용면적</span><span class="leader"></span><span class="lval">{{ area }}</span></div>{% endif %}
+      {% if transit %}<div class="lrow"><span class="lkey">교통</span><span class="leader"></span><span class="lval">{{ transit }}</span></div>{% endif %}
+    </div>
+    <div class="pageno">02 / 04</div>
+  </div></div>
+
+  <!-- 3. 현장 한줄평 + 세부설명 + 지도 -->
+  <div class="slide"><div class="frame">
+    <div class="bar">현장 한줄평 · field note</div>
+    <div class="note">{{ fighter_note }}</div>
+    {% if detail %}<div class="detail">{{ detail }}</div>{% endif %}
+    {% if founder_note %}<div class="founder">{{ founder_note }}<span class="sig">— 재미나이</span></div>{% endif %}
+    <div class="mapbox">
+      {% if map_img %}<img class="mapimg" src="{{ map_img }}">
+      {% else %}<div class="mapph"><span class="pin">📍</span><span class="zl">{{ zone }}</span><small>지도 연동 예정</small></div>{% endif %}
+    </div>
+    <div class="warn">※ 정보제공용 · 단정 아님 · 본인 판단</div>
+    <div class="pageno">03 / 04</div>
+  </div></div>
+
+  <!-- 4. 거래 문의=현장 중개사 / 진단·상담=대표 -->
+  <div class="slide"><div class="frame">
+    <div class="mast"><div class="brand">재미나이</div><div class="issue">SEOUL · 2026</div></div>
+    <div class="rule"></div>
+
+    <div class="bar">매물 문의 · 현장 중개사</div>
+    <div class="broker">{{ source_name }}{% if source_phone %}<br><span class="bphone">{{ source_phone }}</span>{% endif %}</div>
+
+    <div class="bar" style="margin-top:auto;">내 구역 무료 진단 · 재테크 상담</div>
+    <div class="ctasub">관심 구역·종잣돈 고민 → 텔레그램 @your_handle</div>
+
+    <div class="src"><span class="srctxt">정보제공용</span><span class="srcpage">04 / 04</span></div>
+  </div></div>
+</body></html>
