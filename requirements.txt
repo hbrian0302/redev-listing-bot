@@ -1,0 +1,6 @@
+httpx
+requests
+jinja2
+keyring
+playwright
+pillow

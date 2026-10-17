@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.log
+*.db
+.env
+*.session.json
+.threads_*session*.json
+queue/
+.venv/
+venv/
