@@ -15,7 +15,7 @@ FACTS = {
     "basis": "시군구 신축 유사평형 중위(8건·광역참고)",
 }
 
-GOOD = """스치니들~ 인천시청역 줍줍은 좀 아쉬운 듯.
+GOOD = """여러분~ 인천시청역 줍줍은 좀 아쉬운 듯.
 
 역세권 신축인 건 맞는데 6.46억이야.
 바로 옆 신축이 5.38억에 거래됐더라고.
@@ -81,7 +81,7 @@ def test_프롬프트에_금지사항이_들어간다():
     C.generate(FACTS, channel="threads", llm=fake_llm)
     p = seen[0]
     assert "브역대신평공초" in p       # 내부약어 금지 명시
-    assert "스치니들" in p             # 호칭 지정
+    assert "여러분" in p             # 호칭 지정
     assert "텔레그램" in p             # 링크 금지 명시
 
 

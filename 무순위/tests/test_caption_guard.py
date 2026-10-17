@@ -49,7 +49,7 @@ def test_여러_위반을_모두_보고한다():
 
 
 def test_금액이_없는_문장은_통과():
-    text = "스치니들~ 이건 좀 아쉬운 것 같아."
+    text = "여러분~ 이건 좀 아쉬운 것 같아."
     assert C.violations(text, FACTS) == []
 
 

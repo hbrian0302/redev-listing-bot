@@ -88,7 +88,7 @@ def nearest_poi(lng: float, lat: float) -> dict:
          f'node(around:1400,{lat},{lng})["leisure"="park"];way(around:1400,{lat},{lng})["leisure"="park"];'
          f');out center tags;')
     try:
-        els = httpx.post(OVERPASS, data={"data": q}, timeout=60, headers={"User-Agent": "jaeminai/1.0"}).json()["elements"]
+        els = httpx.post(OVERPASS, data={"data": q}, timeout=60, headers={"User-Agent": "redev-listing-bot/1.0"}).json()["elements"]
     except Exception:
         return {"역": None, "초등": None, "공원": None}
 

@@ -46,7 +46,7 @@ def _html(d, t):
     DC = decision_color(d["decision"], ACC)
     wb = round(d["bunyang"] / max(d["bunyang"], d["sise"]) * 100)
     ws = round(d["sise"] / max(d["bunyang"], d["sise"]) * 100)
-    top = lambda n: f'<div class="top"><b>재미나이</b><span>{n} / 3</span></div>'
+    top = lambda n: f'<div class="top"><b>BRAND</b><span>{n} / 3</span></div>'
     p1 = (f'<div class="slide"><div class="pad">{top(1)}<div class="pill">무순위 · 살까말까</div>'
           f'<div class="h1">{d["name_l1"]}<br>{d["name_l2"]}</div><div class="sub">{d["sub"]}</div>'
           f'<div class="cmp"><div class="crow"><div class="clab"><span>무순위 분양가</span><b>{d["bunyang"]:.2f}억</b></div><div class="cbar" style="width:{wb}%;background:{DC}"></div></div>'

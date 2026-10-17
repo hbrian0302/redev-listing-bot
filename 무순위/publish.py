@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""승인 무순위 카드(3장) → 재미나이 스레드 발행. approved → published.
+"""승인 무순위 카드(3장) → 스레드 발행. approved → published.
 사용: python publish.py [--count 1] [--dry-run] [--now]  세션: ~/.threads_redev_session.json"""
 from __future__ import annotations
 import asyncio, json, random, sys, time
