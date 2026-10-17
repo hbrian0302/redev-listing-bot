@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.log
+ig_shots/
+queue/pending/
+queue/approved/
+queue/rejected/
+queue/blog_pool/
+queue/expired/
+queue/_state.json
+seen.json
+cut_analysis.txt
